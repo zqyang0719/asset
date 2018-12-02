@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ces.erp.assetmanagement.biz.dao.ContactInfoDao">
+  <resultMap id="BaseResultMap" type="com.ces.erp.assetmanagement.biz.entity.ContactInfoEntity">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="company_id" jdbcType="VARCHAR" property="companyId" />
+    <result column="enterprise_name" jdbcType="VARCHAR" property="enterpriseName" />
+    <result column="enterprise_post" jdbcType="VARCHAR" property="enterprisePost" />
+    <result column="enterprise_tel" jdbcType="VARCHAR" property="enterpriseTel" />
+    <result column="enterprise_mobile" jdbcType="VARCHAR" property="enterpriseMobile" />
+    <result column="party_name" jdbcType="VARCHAR" property="partyName" />
+    <result column="party_post" jdbcType="VARCHAR" property="partyPost" />
+    <result column="party_tel" jdbcType="VARCHAR" property="partyTel" />
+    <result column="party_mobile" jdbcType="VARCHAR" property="partyMobile" />
+    <result column="office_name" jdbcType="VARCHAR" property="officeName" />
+    <result column="office_post" jdbcType="VARCHAR" property="officePost" />
+    <result column="office_tel" jdbcType="VARCHAR" property="officeTel" />
+    <result column="office_mobile" jdbcType="VARCHAR" property="officeMobile" />
+    <result column="finance_name" jdbcType="VARCHAR" property="financeName" />
+    <result column="finance_post" jdbcType="VARCHAR" property="financePost" />
+    <result column="finance_tel" jdbcType="VARCHAR" property="financeTel" />
+    <result column="finance_mobile" jdbcType="VARCHAR" property="financeMobile" />
+    <result column="hr_name" jdbcType="VARCHAR" property="hrName" />
+    <result column="hr_post" jdbcType="VARCHAR" property="hrPost" />
+    <result column="hr_tel" jdbcType="VARCHAR" property="hrTel" />
+    <result column="hr_mobile" jdbcType="VARCHAR" property="hrMobile" />
+    <result column="create_user_id" jdbcType="VARCHAR" property="createUserId" />
+    <result column="create_user" jdbcType="VARCHAR" property="createUser" />
+    <result column="create_time" jdbcType="DATE" property="createTime" />
+    <result column="is_delete" jdbcType="INTEGER" property="isDelete" />
+    <result column="delete_user_id" jdbcType="VARCHAR" property="deleteUserId" />
+    <result column="delete_user" jdbcType="VARCHAR" property="deleteUser" />
+    <result column="delete_time" jdbcType="DATE" property="deleteTime" />
+  </resultMap>
+</mapper>

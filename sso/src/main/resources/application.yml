@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: sso
+  datasource:
+    url: jdbc:mysql://10.10.34.97:3306/auth401?useUnicode=true&characterEncoding=UTF8
+    username: root
+    password: cesgroup
+    driver-class-name: com.mysql.jdbc.Driver
+  mvc:
+    view:
+      prefix: /WEB-INF/views/
+      suffix: .jsp
+server:
+  port: 8001

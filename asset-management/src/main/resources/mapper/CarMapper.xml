@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ces.erp.assetmanagement.biz.dao.CarDao">
+  <resultMap id="BaseResultMap" type="com.ces.erp.assetmanagement.biz.entity.CarEntity">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="car_no" jdbcType="VARCHAR" property="carNo" />
+    <result column="car_name" jdbcType="VARCHAR" property="carName" />
+    <result column="vehicle_model" jdbcType="VARCHAR" property="vehicleModel" />
+    <result column="vehicle_type" jdbcType="VARCHAR" property="vehicleType" />
+    <result column="buy_time" jdbcType="VARCHAR" property="buyTime" />
+    <result column="original_value" jdbcType="DOUBLE" property="originalValue" />
+    <result column="book_value" jdbcType="DOUBLE" property="bookValue" />
+    <result column="mileage" jdbcType="DOUBLE" property="mileage" />
+    <result column="company_id" jdbcType="INTEGER" property="companyId" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="create_user" property="createUser" jdbcType="VARCHAR"/>
+    <result column="create_user_id" property="createUserId" jdbcType="VARCHAR"/>
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+    <result column="is_delete" property="isDelete" jdbcType="INTEGER"/>
+    <result column="delete_user" property="deleteUser" jdbcType="VARCHAR"/>
+    <result column="delete_user_id" property="deleteUserId" jdbcType="VARCHAR"/>
+    <result column="delete_time" property="deleteTime" jdbcType="TIMESTAMP"/>
+  </resultMap>
+
+  <sql id="car_column">
+    id,car_no,car_name,vehicle_model,vehicle_type,buy_time,original_value,book_value,mileage,
+    company_id,remark,create_user,create_user_id,create_time,
+		is_delete,delete_user,delete_user_id,delete_time
+  </sql>
+
+  <sql id="table_name">
+    t_am_car
+  </sql>
+
+  <insert id="insertCar" parameterType="com.ces.erp.assetmanagement.biz.entity.CarEntity">
+    INSERT INTO
+    <include refid="table_name"/>
+    (
+    <include refid="car_column"/>
+    )VALUES (
+    #{id},#{carNo},#{carName},#{vehicleModel},#{vehicleType},#{buyTime},#{originalValue},#{bookValue},
+    #{mileage},#{companyId},#{remark},#{createUser},#{createUserId},#{createTime},
+    0,#{deleteUser},#{deleteUserId},#{deleteTime}
+    )
+  </insert>
+
+  <update id="updateCar" parameterType="com.ces.erp.assetmanagement.biz.entity.CarEntity">
+    UPDATE
+    <include refid="table_name"/>
+    <set>
+      <if test="carNo != null">car_no = #{carNo},</if>
+      <if test="carName != null">car_name = #{carName},</if>
+      <if test="vehicleModel != null">vehicle_model = #{vehicleModel},</if>
+      <if test="vehicleType != null">vehicle_type = #{vehicleType},</if>
+      <if test="buyTime != null">buy_time = #{buyTime},</if>
+      <if test="originalValue != null">original_value = #{originalValue},</if>
+      <if test="bookValue != null">book_value = #{bookValue},</if>
+      <if test="mileage != null">mileage = #{mileage},</if>
+      <if test="companyId != null">company_id = #{companyId},</if>
+      <if test="remark != null">remark = #{remark},</if>
+      <if test="createUser != null">create_user=#{createUser},</if>
+      <if test="createUserId != null">create_user_id=#{createUserId},</if>
+      <if test="createTime != null">create_time=#{createTime},</if>
+      <if test="isDelete != null">is_delete=#{isDelete},</if>
+      <if test="deleteUser != null">delete_user=#{deleteUser},</if>
+      <if test="deleteUserId != null">delete_user_id=#{deleteUserId},</if>
+      <if test="deleteTime != null">delete_time=#{deleteTime}</if>
+    </set>
+    WHERE id = #{id}
+  </update>
+
+  <update id="deleteCar">
+    update
+    <include refid="table_name"/>
+    <set>
+      <if test="isDelete != null">is_delete = #{isDelete},</if>
+      <if test="deleteUser != null">delete_user = #{deleteUser},</if>
+      <if test="deleteUserId != null">delete_user_id = #{deleteUserId},</if>
+      <if test="deleteTime != null">delete_time = #{deleteTime}</if>
+    </set>
+    WHERE id = #{id}
+  </update>
+
+  <select id="getCarListByPage" resultMap="BaseResultMap">
+    SELECT
+    <include refid="car_column"/>
+    from
+    <include refid="table_name"/>
+    WHERE is_delete != 1
+    <if test="query.condition != null and query.condition != ''">
+      AND car_name like '%${query.condition}%'
+    </if>
+  </select>
+</mapper>

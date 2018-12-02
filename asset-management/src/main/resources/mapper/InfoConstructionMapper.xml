@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ces.erp.assetmanagement.biz.dao.InfoConstructionDao">
+  <resultMap id="BaseResultMap" type="com.ces.erp.assetmanagement.biz.entity.InfoConstructionEntity">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="website" jdbcType="CHAR" property="website" />
+    <result column="outsocial" jdbcType="CHAR" property="outsocial" />
+    <result column="web_outsource" jdbcType="CHAR" property="webOutsource" />
+    <result column="weixin" jdbcType="CHAR" property="weixin" />
+    <result column="wx_outsource" jdbcType="CHAR" property="wxOutsource" />
+    <result column="mailbox" jdbcType="CHAR" property="mailbox" />
+    <result column="mail_outsource" jdbcType="CHAR" property="mailOutsource" />
+    <result column="domain_name" jdbcType="CHAR" property="domainName" />
+    <result column="domain_outsource" jdbcType="CHAR" property="domainOutsource" />
+    <result column="database_server" jdbcType="CHAR" property="databaseServer" />
+    <result column="database_outsource" jdbcType="CHAR" property="databaseOutsource" />
+    <result column="reform" jdbcType="CHAR" property="reform" />
+    <result column="gov_required" jdbcType="CHAR" property="govRequired" />
+    <result column="social_required" jdbcType="CHAR" property="socialRequired" />
+    <result column="legal_dispute" jdbcType="CHAR" property="legalDispute" />
+    <result column="org_dispute" jdbcType="CHAR" property="orgDispute" />
+    <result column="business_dispute" jdbcType="CHAR" property="businessDispute" />
+    <result column="company_id" jdbcType="VARCHAR" property="companyId" />
+    <result column="create_user_id" jdbcType="VARCHAR" property="createUserId" />
+    <result column="create_user" jdbcType="VARCHAR" property="createUser" />
+    <result column="create_time" jdbcType="DATE" property="createTime" />
+    <result column="is_delete" jdbcType="INTEGER" property="isDelete" />
+    <result column="delete_user_id" jdbcType="VARCHAR" property="deleteUserId" />
+    <result column="delete_user" jdbcType="VARCHAR" property="deleteUser" />
+    <result column="delete_time" jdbcType="DATE" property="deleteTime" />
+  </resultMap>
+</mapper>

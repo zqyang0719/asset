@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <properties resource="datasource.properties"/> <!--#这里记录了数据库连接-->
+
+    <context defaultModelType="flat" id="mysql" targetRuntime="MyBatis3Simple">
+        <!-- 生成的Java文件的编码 -->
+        <property name="javaFileEncoding" value="UTF-8"/>
+        <!-- 生成根Mapper，用户可以看后边代码 -->
+        <plugin type="tk.mybatis.mapper.generator.MapperPlugin">
+            <property name="mappers" value="com.ces.erp.assetmanagement.base.mapper.BaseMapper"/>
+        </plugin>
+
+        <jdbcConnection driverClass="${db.driverClassName}"
+                        connectionURL="${db.url}"
+                        userId="${db.username}" password="${db.password}">
+        </jdbcConnection>
+
+        <javaModelGenerator targetPackage="com.ces.erp.assetmanagement.biz.entity"
+                            targetProject="src/main/java">
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+
+        <sqlMapGenerator targetPackage="mapper"
+                         targetProject="src/main/resources">
+        </sqlMapGenerator>
+
+        <!--
+            1，ANNOTATEDMAPPER：会生成使用Mapper接口+Annotation的方式创建（SQL生成在annotation中），不会生成对应的XML；
+            2，XMLMAPPER：会生成Mapper接口，接口完全依赖XML；
+        -->
+        <javaClientGenerator type="XMLMAPPER"
+                             targetPackage="com.ces.erp.assetmanagement.biz.dao"
+                             targetProject="src/main/java">
+        </javaClientGenerator>
+
+        <!--<table schema="" tableName="t_am_companyinfo" domainObjectName="CompanyInfoEntity">
+            <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+        </table>
+        <table tableName="t_am_car" domainObjectName="CarEntity">
+            <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+        </table>
+        <table tableName="t_am_lawsuit" domainObjectName="LawsuitEntity">
+            <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+        </table>
+        <table tableName="t_am_mortgage" domainObjectName="MortgageEntity">
+            <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+        </table>-->
+
+        <!--<table tableName="t_am_contact_info" domainObjectName="ContactInfo">
+            <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+        </table>
+        <table tableName="t_am_info_construction" domainObjectName="InfoConstruction">
+            <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+        </table>
+        <table tableName="t_am_invest_info" domainObjectName="InvestInfo">
+            <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+        </table>
+        <table tableName="t_am_securities_asset" domainObjectName="SecuritiesAsset">
+            <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+        </table>
+        <table tableName="t_am_sharehold_change" domainObjectName="ShareholdChange">
+            <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+        </table>
+        <table tableName="t_am_shareholder" domainObjectName="Shareholder">
+            <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+        </table>-->
+        <table tableName="t_am_contradiction" domainObjectName="Contradiction">
+            <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+        </table>
+        <table tableName="t_am_estate" domainObjectName="Estate">
+            <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+        </table>
+        <table tableName="t_am_foreign_guarantee" domainObjectName="ForeignGuarantee">
+            <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+        </table>
+        <table tableName="t_am_offbook_asset" domainObjectName="OffbookAsset">
+            <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+        </table>
+        <table tableName="t_am_party_info" domainObjectName="PartyInfo">
+            <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+        </table>
+        <table tableName="t_am_party_member" domainObjectName="PartyMember">
+            <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+        </table>
+        <table tableName="t_am_trademark_patent" domainObjectName="TrademarkPatent">
+            <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+        </table>
+    </context>
+</generatorConfiguration>
