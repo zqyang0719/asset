@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ces.erp.assetmanagement.biz.dao.CompanySummaryMapper">
+  <resultMap id="BaseResultMap" type="com.ces.erp.assetmanagement.biz.entity.CompanySummary">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="company_id" jdbcType="VARCHAR" property="companyId" />
+    <result column="company_name" jdbcType="VARCHAR" property="companyName" />
+    <result column="registered_capital" jdbcType="DOUBLE" property="registeredCapital" />
+    <result column="share_proportion" jdbcType="VARCHAR" property="shareProportion" />
+    <result column="investment_amount" jdbcType="DOUBLE" property="investmentAmount" />
+    <result column="shareholder_equity_ratio" jdbcType="VARCHAR" property="shareholderEquityRatio" />
+    <result column="original_shareholder" jdbcType="VARCHAR" property="originalShareholder" />
+    <result column="register_place" jdbcType="VARCHAR" property="registerPlace" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="create_user_id" jdbcType="VARCHAR" property="createUserId" />
+    <result column="create_user" jdbcType="VARCHAR" property="createUser" />
+    <result column="create_time" jdbcType="DATE" property="createTime" />
+    <result column="is_delete" jdbcType="INTEGER" property="isDelete" />
+    <result column="delete_user_id" jdbcType="VARCHAR" property="deleteUserId" />
+    <result column="delete_user" jdbcType="VARCHAR" property="deleteUser" />
+    <result column="delete_time" jdbcType="DATE" property="deleteTime" />
+  </resultMap>
+</mapper>

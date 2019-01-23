@@ -1,5 +1,6 @@
 package com.ces.erp.assetmanagement.biz.service.impl;
 
+import com.ces.erp.annotation.CustomLogger;
 import com.ces.erp.assetmanagement.biz.dao.CarDao;
 import com.ces.erp.assetmanagement.biz.entity.CarEntity;
 import com.ces.erp.assetmanagement.biz.service.ICarService;
@@ -21,6 +22,7 @@ public class CarServiceImpl implements ICarService {
     private CarDao carDao;
 
     @Override
+    @CustomLogger
     public CarEntity saveCar(CarEntity car) {
         if(StringUtils.isNullOrEmpty(car.getId())){
             car.setId(CommonUtils.createId());

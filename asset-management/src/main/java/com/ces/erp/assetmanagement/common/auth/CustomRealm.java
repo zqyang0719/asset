@@ -1,9 +1,8 @@
 package com.ces.erp.assetmanagement.common.auth;
 
 
-
 import com.ces.erp.assetmanagement.auth.entity.UserEntity;
-import com.ces.erp.assetmanagement.auth.service.IUserService;
+import com.ces.erp.assetmanagement.auth.service.UserService;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
@@ -17,7 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class CustomRealm extends AuthorizingRealm {
 	
 	@Autowired
-	private IUserService userService;
+	private UserService userService;
 
 	/**
 	 * @desc 授权

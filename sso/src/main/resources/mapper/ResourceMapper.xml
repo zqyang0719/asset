@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ces.erp.sso.dao.ResourceDao">
+  <resultMap id="BaseResultMap" type="com.ces.erp.sso.entity.ResourceEntity">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="parent_id" jdbcType="VARCHAR" property="parentId" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="code" jdbcType="VARCHAR" property="code" />
+    <result column="url" jdbcType="VARCHAR" property="url" />
+    <result column="image_url" jdbcType="VARCHAR" property="imageUrl" />
+    <result column="comments" jdbcType="VARCHAR" property="comments" />
+    <result column="typing" jdbcType="BIGINT" property="typing" />
+    <result column="system_id" jdbcType="VARCHAR" property="systemId" />
+    <result column="system_code" jdbcType="VARCHAR" property="systemCode" />
+    <result column="tenant_id" jdbcType="VARCHAR" property="tenantId" />
+    <result column="status" jdbcType="BIGINT" property="status" />
+    <result column="approval_status" jdbcType="BIGINT" property="approvalStatus" />
+    <result column="create_user" jdbcType="VARCHAR" property="createUser" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="modify_user" jdbcType="VARCHAR" property="modifyUser" />
+    <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
+    <result column="show_order" jdbcType="DECIMAL" property="showOrder" />
+    <result column="is_menu" jdbcType="BIGINT" property="isMenu" />
+    <result column="module_id" jdbcType="VARCHAR" property="moduleId" />
+    <result column="source_file" jdbcType="VARCHAR" property="sourceFile" />
+    <result column="invoke_function" jdbcType="VARCHAR" property="invokeFunction" />
+  </resultMap>
+  <sql id="table_role_resource">
+    t_link_role_resource
+  </sql>
+  <sql id="table_user_role">
+    t_link_user_role
+  </sql>
+  <sql id="table_role">
+    t_role
+  </sql>
+  <sql id="table_user">
+    t_account
+  </sql>
+  <sql id="table_name">
+    t_resources
+  </sql>
+  <select id="getPermissionByMobile" resultMap="BaseResultMap">
+    select * from t_resources r
+    where r.id in (
+      select rr.resource_id from t_link_role_resource rr where rr.role_id in
+        (select ur.role_id from t_link_user_role ur where ur.user_id =
+        (select id from t_account u where u.login_name = #{mobile})
+        )
+    )
+  </select>
+</mapper>

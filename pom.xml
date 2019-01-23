@@ -7,6 +7,11 @@
     <groupId>com.ces.erp</groupId>
     <artifactId>asset</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
 
-
+    <modules>
+        <module>eureka</module>
+        <module>asset-management</module>
+        <module>common</module>
+    </modules>
 </project>

@@ -2,8 +2,12 @@ package com.ces.erp.assetmanagement.base.entity;
 
 
 import com.ces.erp.assetmanagement.common.util.StringUtils;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class ResultInfo {
+
+    private static final ObjectMapper MAPPER = new ObjectMapper();	// 定义jackson对象
 
 	private String status;
     private Object data;
@@ -91,5 +95,28 @@ public class ResultInfo {
     @Override
     public String toString() {
         return "ResultInfo [status=" + status + ", data=" + data + ", errorCode=" + errorCode + ", errorMsg=" + errorMsg + "]";
+    }
+
+
+
+    public static ResultInfo formatToPojo(String jsonData, Class<?> clazz) {
+        try {
+            if (clazz == null) {
+                return MAPPER.readValue(jsonData, ResultInfo.class);
+            }
+            JsonNode jsonNode = MAPPER.readTree(jsonData);
+            JsonNode data = jsonNode.get("data");
+            Object obj = null;
+            if (clazz != null) {
+                if (data.isObject()) {
+                    obj = MAPPER.readValue(data.traverse(), clazz);
+                } else if (data.isTextual()) {
+                    obj = MAPPER.readValue(data.asText(), clazz);
+                }
+            }
+            return new ResultInfo("success", obj, "","");
+        } catch (Exception e) {
+            return null;
+        }
     }
 }

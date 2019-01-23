@@ -1,0 +1,34 @@
+package com.ces.erp.assetmanagement.common.config;
+
+import com.ces.erp.assetmanagement.auth.entity.UserEntity;
+
+/**
+ * @Auther: zhou.qian
+ * @Date: 2018/12/5 20:31
+ * @Description:
+ */
+public class SystemSession {
+    //声明
+    private static ThreadLocal<UserEntity> local = new ThreadLocal<UserEntity>();
+    /**
+     * 赋值
+     * @param session
+     */
+    public static void setUser(UserEntity session) {
+        local.set(session);
+    }
+    /**
+     * 取值
+     * @return
+     */
+    public static UserEntity getUser() {
+        return local.get();
+    }
+    /**
+     * 移除
+     */
+    public static void remove(){
+        local.remove();
+    }
+
+}

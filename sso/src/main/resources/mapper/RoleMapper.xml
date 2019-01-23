@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ces.erp.sso.dao.RoleDao">
+  <resultMap id="BaseResultMap" type="com.ces.erp.sso.entity.RoleEntity">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="code" jdbcType="VARCHAR" property="code" />
+    <result column="comments" jdbcType="VARCHAR" property="comments" />
+    <result column="tenant_id" jdbcType="VARCHAR" property="tenantId" />
+    <result column="create_user" jdbcType="VARCHAR" property="createUser" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="modify_user" jdbcType="VARCHAR" property="modifyUser" />
+    <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
+    <result column="status" jdbcType="BIGINT" property="status" />
+    <result column="approval_status" jdbcType="BIGINT" property="approvalStatus" />
+    <result column="show_order" jdbcType="DECIMAL" property="showOrder" />
+    <result column="system_id" jdbcType="VARCHAR" property="systemId" />
+    <result column="is_public" jdbcType="BIGINT" property="isPublic" />
+    <result column="unit_id" jdbcType="VARCHAR" property="unitId" />
+    <result column="name_first_spell" jdbcType="VARCHAR" property="nameFirstSpell" />
+  </resultMap>
+</mapper>

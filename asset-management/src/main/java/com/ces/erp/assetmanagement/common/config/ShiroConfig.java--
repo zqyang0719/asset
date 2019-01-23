@@ -1,4 +1,5 @@
 package com.ces.erp.assetmanagement.common.config;
+import at.pollux.thymeleaf.shiro.dialect.ShiroDialect;
 import com.ces.erp.assetmanagement.common.auth.CustomRealm;
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
@@ -6,19 +7,33 @@ import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import javax.servlet.Filter;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
 @Configuration
 public class ShiroConfig {
+    //用于thymeleaf模板使用shiro标签
+    @Bean
+    public ShiroDialect shiroDialect() {
+        return new ShiroDialect();
+    }
     @Bean("shiroFilter")
     public ShiroFilterFactoryBean shirFilter(SecurityManager securityManager) {
         ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
         shiroFilterFactoryBean.setSecurityManager(securityManager);
 //		//拦截器
+       /* Map<String, Filter> filtersMap = new LinkedHashMap<String, Filter>();
+        filtersMap.put("authc", new CustomAuthenticatingFilter());
+        shiroFilterFactoryBean.setFilters(filtersMap);*/
         Map<String,String> filterChainMap = new LinkedHashMap<String,String>();
-//		//配置不会被拦截的链接，顺序判断
-        filterChainMap.put("/static/**", "anon");
+        /*filterChainMap.put("/**", "authc");
+        shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainMap);
+        shiroFilterFactoryBean.setLoginUrl("http://localhost:8001/login?redirect=http://localhost:8099/");
+        shiroFilterFactoryBean.setSuccessUrl("/index");*/
+
+        //		//配置不会被拦截的链接，顺序判断
+        filterChainMap.put("/assets/**", "anon");
         filterChainMap.put("/system/user/registerUser", "anon");
         filterChainMap.put("/system/user/sendSms", "anon");
         filterChainMap.put("/system/user/sendSmsPwd", "anon");
@@ -28,7 +43,7 @@ public class ShiroConfig {
 //      	//authc:所有url都必须认证通过才可以访问；anon:所有url都都可以匿名访问
         filterChainMap.put("/**", "authc");
 //		//如果不设置默认会自动寻找Web工程根目录下的"/login.jsp"页面
-        shiroFilterFactoryBean.setLoginUrl("http://localhost:8001/login");
+        shiroFilterFactoryBean.setLoginUrl("http://localhost:8001/login?redirect=http://localhost:8099/");
 //		//登录成功后要跳转的链接
 //		shiroFilterFactoryBean.setSuccessUrl("/index");
 //		//未授权界面;

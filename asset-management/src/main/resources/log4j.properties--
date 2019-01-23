@@ -1,0 +1,15 @@
+log4j.rootLogger=WARN,LOGDB2
+#达到数量插入记录
+log4j.appender.LOGDB2.bufferSize=10
+log4j.appender.LOGDB2=org.apache.log4j.jdbc.JDBCAppender
+#连接数据库的驱动-这里根据自己使用的数取库去填写
+log4j.appender.LOGDB2.Driver=com.mysql.jdbc.Driver
+#连接数据库的地址
+log4j.appender.LOGDB2.URL=jdbc:mysql://10.10.34.97:3306/asset?useUnicode=true&characterEncoding=UTF-8&useSSL=false
+#连接数据库的用户名
+log4j.appender.LOGDB2.user=root
+#密码
+log4j.appender.LOGDB2.password=cesgroup
+#创建记录的sql--这里需要自己手动去创建一个记录表,注意表列名一一对应,本人测试日期类型必须为varchar2,不知道是不是oracle的问题
+log4j.appender.LOGDB2.sql=INSERT?INTO?t_am_log(id,create_date,logger,log_level,log_message)?VALUES('%x','%d{yyyy-MM-dd?HH:mm:ss}','%C','%p','%m')
+log4j.appender.LOGDB2.layout=org.apache.log4j.PatternLayout

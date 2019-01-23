@@ -68,25 +68,13 @@
         <table tableName="t_am_shareholder" domainObjectName="Shareholder">
             <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
         </table>-->
-        <table tableName="t_am_contradiction" domainObjectName="Contradiction">
+        <table tableName="t_am_company_summary" domainObjectName="CompanySummary">
             <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
         </table>
-        <table tableName="t_am_estate" domainObjectName="Estate">
+        <table tableName="t_am_financial_situation" domainObjectName="FinancialSituation">
             <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
         </table>
-        <table tableName="t_am_foreign_guarantee" domainObjectName="ForeignGuarantee">
-            <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
-        </table>
-        <table tableName="t_am_offbook_asset" domainObjectName="OffbookAsset">
-            <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
-        </table>
-        <table tableName="t_am_party_info" domainObjectName="PartyInfo">
-            <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
-        </table>
-        <table tableName="t_am_party_member" domainObjectName="PartyMember">
-            <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
-        </table>
-        <table tableName="t_am_trademark_patent" domainObjectName="TrademarkPatent">
+        <table tableName="t_am_staff_status" domainObjectName="StaffStatus">
             <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
         </table>
     </context>

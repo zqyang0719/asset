@@ -1,0 +1,114 @@
+package com.ces.erp.sso.auth;
+
+import org.apache.commons.lang.StringUtils;
+import org.apache.shiro.authc.AuthenticationException;
+import org.apache.shiro.authc.AuthenticationInfo;
+import org.apache.shiro.authc.AuthenticationToken;
+import org.apache.shiro.authc.SimpleAuthenticationInfo;
+import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
+import org.apache.shiro.authz.AuthorizationInfo;
+import org.apache.shiro.authz.SimpleAuthorizationInfo;
+import org.apache.shiro.crypto.hash.Sha512Hash;
+import org.apache.shiro.realm.AuthorizingRealm;
+import org.apache.shiro.subject.PrincipalCollection;
+
+/**
+ * @Auther: zhou.qian
+ * @Date: 2018/12/2 21:31
+ * @Description:
+ */
+public class MyRealm extends AuthorizingRealm {
+
+    public MyRealm() {
+        setName("myRealm");
+        HashedCredentialsMatcher hcm = new HashedCredentialsMatcher();
+        //使用SHA-512 加密
+        hcm.setHashAlgorithmName(Sha512Hash.ALGORITHM_NAME);
+        setCredentialsMatcher(hcm);
+    }
+
+    @Override
+    protected AuthorizationInfo doGetAuthorizationInfo(
+            PrincipalCollection principals) {
+        SysUser user = SystemSession.getUser();
+        if (user != null) {
+            SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
+            List<Menu> list = user.getRoles().get(0).getMenuList();
+            for (Menu menu : list){
+                if (StringUtils.isNotBlank(menu.getPermission())) {
+                    // 添加基于Permission的权限信息
+                    for (String permission : StringUtils.split(menu.getPermission(),",")){
+                        info.addStringPermission(permission);
+                    }
+                }
+            }
+            // 添加用户权限
+            info.addStringPermission("user");
+            // 添加用户角色信息
+            for (SysRole role : user.getRoles()) {
+                info.addRole(role.getEnglishName());
+            }
+            return info;
+        } else {
+            return null;
+        }
+    }
+
+    @Override
+    protected AuthenticationInfo doGetAuthenticationInfo(
+            AuthenticationToken authcToken) throws AuthenticationException {
+        //获取user信息
+        SysUser user = SystemSession.getUser();
+        if (user != null) {
+            if (user.getIsEnable()!=1) {
+                throw new AuthenticationException("msg:该帐号已禁止登录.");
+            }
+            return new SimpleAuthenticationInfo(new Principal(user), Constants.CREDENTIALS, getName());
+        }
+        return null;
+    }
+
+
+    public static class Principal implements Serializable {
+
+        private static final long serialVersionUID = 1L;
+
+        private String id; // 编号
+        private String loginName; // 登录名
+        private String name; // 姓名
+        private List<String> roleIdList;
+
+
+        public List<String> getRoleIdList() {
+            return roleIdList;
+        }
+
+        public void setRoleIdList(List<String> roleIdList) {
+            this.roleIdList = roleIdList;
+        }
+
+        public Principal(SysUser user) {
+            this.id = user.getId();
+            this.loginName = user.getUsername();
+            this.name = user.getCharacterName();
+            this.roleIdList=user.getRoleIdList();
+        }
+
+        public String getId() {
+            return id;
+        }
+
+        public String getLoginName() {
+            return loginName;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        @Override
+        public String toString() {
+            return id;
+        }
+
+    }
